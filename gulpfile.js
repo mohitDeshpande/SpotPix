@@ -39,7 +39,7 @@ gulp.task('sass', function() {
 
 // task to combine and minify all javascript
 gulp.task('js', function() {
-    gutil.log('Concating and minifying all javascript');
+    gutil.log('Concatenating and minifying all javascript');
     gulp.src(jsSources)
         .pipe(uglify())
         .pipe(concat('script.js'))
