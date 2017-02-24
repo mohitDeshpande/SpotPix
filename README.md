@@ -6,12 +6,14 @@ and running on your local machine for development and testing purposes.
 ### Prerequisites
 Node.js/npm and gulp are required to be installed on your system 
 before you proceed with Installation and Set-Up
-Please go through the below steps to make sure you have them installed
+Please go through the below steps to make sure you have them installed.
+
 1. If you do not have Node.js already installed then [download the package installer from Node's Website](https://nodejs.org/en/)
 2. If you do not have [Gulp](http://gulpjs.com) installed then Install gulp globally using the following command
     ```
     npm install --global gulp
     ```
+
 ### Installation and Set-Up
 1. clone the repository on your system
     ```
