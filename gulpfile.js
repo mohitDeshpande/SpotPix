@@ -52,7 +52,7 @@ gulp.task('js', function() {
 gulp.task('connect', function() {
     gutil.log('Connecting to server');
     connect.server({
-        root: 'dist/index.html',
+        root: 'dist/',
         livereload: true
     })
 });
