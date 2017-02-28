@@ -23,7 +23,7 @@ Please go through the below steps to make sure you have them installed
     ```
 3. Install all dependencies
     ```
-    npm install
+    npm install --save-dev
     ```
 4. Run the gulp task runner to build the project and deploy it on the gulp server
     ```

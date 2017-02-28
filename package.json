@@ -23,6 +23,9 @@
     "gulp-connect": "latest",
     "gulp-sass": "latest",
     "gulp-uglify": "latest",
-    "gulp-util": "^3.0.8"
+    "gulp-util": "^3.0.8",
+    "gulp-htmlmin": "latest",
+    "gulp-cssnano": "latest",
+    "gulp-imagemin": "latest"
   }
 }
