@@ -10,21 +10,38 @@
 </head>
 <body>
 
-    <!--HEADER-->
-    <header class="container">
-        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        </nav>
-    </header>
+<!--HEADER-->
+<header class="container">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    </nav>
+</header>
 
-    <!--BODY-->
-    <main class="container"></main>
+<!--BODY-->
+<main>
+    <section id="landing">
+        <!-- TODO create a landing page for website -->
+        <div class="jumbtron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-3">SpotPix</h1>
+                <p class="lead">Welcome to SpotPix</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container" id="application">
+            <div id="map" class="row"></div>
+            <div id="gallery" class="row"></div>
+        </div>
+    </section>
+</main>
 
-    <!--FOOTER-->
-    <footer class="container"></footer>
+<!--FOOTER-->
+<footer class="container"></footer>
 
-    <!-- Javascript Links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+<!-- Javascript Links -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgMElgfY8buDapA2d3VO-7fWgMJCPqhqk&callback=initMap" async defer></script>
+<script src="script.js"></script>
 </body>
 </html>

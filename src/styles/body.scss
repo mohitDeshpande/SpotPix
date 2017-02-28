@@ -1,2 +1,13 @@
 // All body related styles go here
 @import "global";
+
+// set the style for the map
+#map {
+  height: 100%;
+  @extend .z-depth-2
+}
+#application {
+  height:90%;
+}
+
+// add padding to div elements inside section

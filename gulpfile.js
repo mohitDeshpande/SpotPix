@@ -47,8 +47,10 @@ gulp.task('sass', function() {
 gulp.task('js', function() {
     gutil.log('Concatenating and minifying all javascript');
     gulp.src(jsSources)
-        .pipe(uglify())
         .pipe(concat('script.js'))
+        .pipe(uglify().on('error', function (e) {
+            console.log(e);
+        }))
         .pipe(gulp.dest(outputDir))
         .pipe(connect.reload())
 });
