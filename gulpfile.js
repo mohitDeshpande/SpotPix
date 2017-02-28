@@ -12,7 +12,7 @@ var gulp  = require('gulp'),
 
 // grab our sources and destinations
 var jsSources = ['src/scripts/*.js'],
-    sassSources = ['src/styles/*.scss'],
+    sassSources = ['src/styles/header.scss','src/styles/footer.scss','src/styles/body.scss'],
     htmlSources = ['src/*.html'],
     outputDir = 'dist';
 
@@ -59,7 +59,7 @@ gulp.task('connect', function() {
 
 // task to watch for any changes in the source files
 gulp.task('watch', function() {
-    gutil.log('Monitoring Changes ...');;;;
+    gutil.log('Monitoring Changes ...');
     gulp.watch(jsSources, ['js']);
     gulp.watch(sassSources, ['sass']);
     gulp.watch(htmlSources, ['html']);
