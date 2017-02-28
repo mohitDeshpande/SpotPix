@@ -17,13 +17,14 @@
   },
   "homepage": "https://github.com/mohitDeshpande/SpotPix#readme",
   "devDependencies": {
+    "gulp-util": "^3.0.8"
+  },
+  "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-coffee": "latest",
     "gulp-concat": "latest",
     "gulp-connect": "latest",
     "gulp-sass": "latest",
     "gulp-uglify": "latest",
-    "gulp-util": "^3.0.8",
     "gulp-htmlmin": "latest",
     "gulp-cssnano": "latest",
     "gulp-imagemin": "latest"
