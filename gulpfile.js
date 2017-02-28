@@ -8,9 +8,9 @@ var gulp  = require('gulp'),
     sass = require('gulp-sass'),
     connect = require('gulp-connect'),
     uglify = require('gulp-uglify'),
-    concat = require('gulp-concat');
-    htmlmin = require('gulp-htmlmin');
-    cssnano = require('gulp-cssnano');
+    concat = require('gulp-concat'),
+    htmlmin = require('gulp-htmlmin'),
+    cssnano = require('gulp-cssnano'),
     imagemin = require('gulp-imagemin');
 
 // grab our sources and destinations
@@ -68,6 +68,7 @@ gulp.task('connect', function() {
     gutil.log('Connecting to server');
     connect.server({
         root: 'dist/',
+        port: process.env.PORT || 5000, // localhost:5000
         livereload: true
     })
 });
