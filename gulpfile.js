@@ -78,6 +78,7 @@ gulp.task('watch', function() {
     gulp.watch(jsSources, ['js']);
     gulp.watch(sassSources, ['sass']);
     gulp.watch(htmlSources, ['html']);
+    gulp.watch(imageSources, ['images']);
 });
 
 // task to do all the processing, create a server and keep a watch
