@@ -2,12 +2,19 @@
 @import "global";
 
 // set the style for the map
+#map-search {
+  height: 4em;
+  margin-top: 1em;
+
+}
 #map {
   height: 100%;
+  margin-top: -8%;
   @extend .z-depth-2
 }
 #application {
   height:90%;
+  background-color: $very-light-grey
 }
 
 // add padding to div elements inside section
