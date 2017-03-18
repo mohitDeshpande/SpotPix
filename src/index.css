@@ -1,0 +1,36 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 20px;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    min-height: inherit;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    background-image: url('bg.jpg');
+    text-align: center;
+    color: white;
+}
+
+.header-content-inner{
+    margin: 10px;
+    padding: 80px;
+}
+h1{
+    padding: 10px;
+}
+
+#msg{
+    font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 20px;
+}
