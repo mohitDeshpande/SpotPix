@@ -5,3 +5,10 @@
 
 // set height of section elements equal to height of the viewport
 $('section').height($(window).height());
+
+// animate scrolling to section
+$('#find-btn').click(function () {
+    $('body').animate({
+        scrollTop: $('#map').offset().top
+    }, 1200);
+})
