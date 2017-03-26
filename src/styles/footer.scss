@@ -1,2 +1,28 @@
-//All footer related styles go here
+//All footer related styles go here -> NO!
 @import "global";
+
+footer {
+  .container {
+    font-size:0.8em;
+    border-top: 5px solid black;
+    padding-top: 20px;
+  }
+
+}
+
+
+ul {
+  list-style-type: none;
+  li {
+    padding-bottom: 20px;
+  }
+
+}
+#footer-nav {
+  a:link, a:visited {
+    text-decoration: none;
+  }
+  a:hover, a:active {
+    text-decoration: underline;
+  }
+}
