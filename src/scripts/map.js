@@ -5,6 +5,7 @@
  * all methods and code related to the Google Maps JavaScript API goes here
  */
 
+var googleAPI = 'AIzaSyCgMElgfY8buDapA2d3VO-7fWgMJCPqhqk';
 
 map = null;
 var toronto = {lat: 43.6426, lng: -79.3871};
@@ -18,6 +19,7 @@ function initMap() {
     });
 
     createMapSearch(map);
+
 
 }
 
@@ -81,6 +83,44 @@ function createMapSearch(map) {
         });
         map.fitBounds(bounds);
     });
+}
+
+function plotMarkers(map) {
+    $(document).ready(function () {
+
+        $.getJSON('stationBeanList.json', function (data) {
+            var stations = data.stationBeanList;
+            console.log(stations);
+
+            $.each(stations, function (index, station) {
+                var location = {lat: station.latitude, lng: station.longitude};
+                console.log(location);
+
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    title: station.stationName
+
+                });
+
+                var info = "<h1>" + station.stationName + "</h1>" +
+                    "<p>" + station.statusValue + "</p>" +
+                    "<p>" + station.city + "</p>";
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: info
+                });
+
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+
+
+            });
+        });
+    });
+
+
 }
 
 
