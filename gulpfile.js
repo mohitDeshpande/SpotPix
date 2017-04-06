@@ -18,6 +18,7 @@ var jsSources = ['src/scripts/*.js'],
     sassSources = ['src/styles/header.scss','src/styles/footer.scss','src/styles/body.scss'],
     htmlSources = ['src/*.html'],
     imageSources = ['src/images/*'],
+    dataSources = ['src/data/*'],
     outputDir = 'dist';
 
 
@@ -64,6 +65,15 @@ gulp.task('images', function () {
         .pipe(connect.reload())
 });
 
+//TODO minify xml and json
+// task to move data sources
+gulp.task('assets', function() {
+    gutil.log('Optimizing data and assets');
+    gulp.src(dataSources)
+        .pipe(gulp.dest(outputDir+"/data/"))
+        .pipe(connect.reload())
+});
+
 
 // task to run the server
 gulp.task('connect', function() {
@@ -82,7 +92,8 @@ gulp.task('watch', function() {
     gulp.watch(sassSources, ['sass']);
     gulp.watch(htmlSources, ['html']);
     gulp.watch(imageSources, ['images']);
+    gulp.watch(dataSources, ['assets']);
 });
 
 // task to do all the processing, create a server and keep a watch
-gulp.task('default', ['html', 'js', 'sass','images', 'connect', 'watch']);
+gulp.task('default', ['html', 'js', 'sass','images', 'assets','connect', 'watch']);
