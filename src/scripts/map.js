@@ -96,6 +96,7 @@ function plotMarkers(map)
     {
         var location = locations[i];
         var postal_codes = location.getElementsByTagName("PostalCode");
+
         for(var j = 0; j < postal_codes.length; j++)
         {
             //alert(postal_codes[j].childNodes[0].nodeValue);
@@ -110,8 +111,8 @@ function plotMarkers(map)
                         map: map
                         });
 
-                    var info = "<h1>" + locations.LocationName + "</h1>" +
-                        "<p>" + locations.address + "</p>";
+                    var info = "<h1>" + location.LocationName + "</h1>" +
+                        "<p>" + location.address + "</p>";
 
                     var infowindow = new google.maps.InfoWindow({content: info});
 
