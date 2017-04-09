@@ -1,11 +1,8 @@
 /**
- * Created by mohit on 2017-02-28.
- */
-/**
  * all methods and code related to the Google Maps JavaScript API goes here
  */
 
-
+var API= 'AIzaSyCgMElgfY8buDapA2d3VO-7fWgMJCPqhqk';
 map = null;
 var toronto = {lat: 43.6426, lng: -79.3871};
 
@@ -17,6 +14,7 @@ function initMap() {
         mapTypeId: 'roadmap'
     });
 
+    plotMarkers(map);
     createMapSearch(map);
 
 }
@@ -83,7 +81,77 @@ function createMapSearch(map) {
     });
 }
 
+function plotMarkers(map)
+{
 
+    var geocoder = new google.maps.Geocoder();
+    var marker;
+
+    var request = new XMLHttpRequest();
+    request.open("GET", "/data/locations.xml", false);
+    request.send();
+    var xml = request.responseXML;
+    var locations = xml.getElementsByTagName("Location");
+    for(var i = 0; i < locations.length; i++)
+    {
+        var location = locations[i];
+        var postal_codes = location.getElementsByTagName("PostalCode");
+        for(var j = 0; j < postal_codes.length; j++)
+        {
+            //alert(postal_codes[j].childNodes[0].nodeValue);
+            var pc=postal_codes[j].childNodes[0].nodeValue;
+            geocoder.geocode({'address': pc}, function (result, status)
+            {
+                if (status == google.maps.GeocoderStatus.OK)
+                    {
+                        marker = new google.maps.Marker
+                        ({
+                        position: result[0].geometry.location,
+                        map: map
+                        });
+
+                    var info = "<h1>" + locations.LocationName + "</h1>" +
+                        "<p>" + locations.address + "</p>";
+
+                    var infowindow = new google.maps.InfoWindow({content: info});
+
+                    marker.addListener('click', function () {infowindow.open(map, marker); });
+                }
+            });
+        }
+    }
+
+   /* $(document).ready(function()
+    {
+        $.get('locations.xml', function (data) {
+            postal_codes = data.PostalCode;
+            console.log(postal_codes);
+
+            for (var i = 0; i < postal_codes.length; i++)
+            {
+                geocoder.geocode({pc: postal_codes[i]}, function (result, status)
+                {
+                    if (status == google.maps.GeocoderStatus.OK)
+                    {
+                        //var location = results[0].geometry.location;
+                        marker = new google.maps.Marker({
+                            position: result[0].geometry.pc,
+                            map: map
+                        });
+
+                        var info = "<h1>" + data.LocationName + "</h1>" +
+                            "<p>" + data.address + "</p>";
+
+                        var infowindow = new google.maps.InfoWindow({content: info});
+
+                        marker.addListener('click', function () {infowindow.open(map, marker); });
+                    }
+                });
+            }
+        });
+    })
+*/
+}
 
 
 
