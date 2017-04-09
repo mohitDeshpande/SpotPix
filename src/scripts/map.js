@@ -122,36 +122,6 @@ function plotMarkers(map)
         }
     }
 
-   /* $(document).ready(function()
-    {
-        $.get('locations.xml', function (data) {
-            postal_codes = data.PostalCode;
-            console.log(postal_codes);
-
-            for (var i = 0; i < postal_codes.length; i++)
-            {
-                geocoder.geocode({pc: postal_codes[i]}, function (result, status)
-                {
-                    if (status == google.maps.GeocoderStatus.OK)
-                    {
-                        //var location = results[0].geometry.location;
-                        marker = new google.maps.Marker({
-                            position: result[0].geometry.pc,
-                            map: map
-                        });
-
-                        var info = "<h1>" + data.LocationName + "</h1>" +
-                            "<p>" + data.address + "</p>";
-
-                        var infowindow = new google.maps.InfoWindow({content: info});
-
-                        marker.addListener('click', function () {infowindow.open(map, marker); });
-                    }
-                });
-            }
-        });
-    })
-*/
 }
 
 
