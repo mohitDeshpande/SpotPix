@@ -2,7 +2,7 @@
  * all methods and code related to the Google Maps JavaScript API goes here
  */
 
-var API= 'AIzaSyCgMElgfY8buDapA2d3VO-7fWgMJCPqhqk';
+var googleAPI= 'AIzaSyCgMElgfY8buDapA2d3VO-7fWgMJCPqhqk';
 map = null;
 var toronto = {lat: 43.6426, lng: -79.3871};
 
@@ -92,18 +92,28 @@ function plotMarkers(map)
     request.send();
     var xml = request.responseXML;
     var locations = xml.getElementsByTagName("Location");
+
     for(var i = 0; i < locations.length; i++)
     {
         var location = locations[i];
         var postal_codes = location.getElementsByTagName("PostalCode");
 
+        //change
+        var location_names=location.getElementsByTagName("LocationName");
+
         for(var j = 0; j < postal_codes.length; j++)
         {
-            //alert(postal_codes[j].childNodes[0].nodeValue);
             var pc=postal_codes[j].childNodes[0].nodeValue;
+
+
+            var ln=location_names[j].childNodes[0].nodeValue;
+            console.log(ln);
+
             geocoder.geocode({'address': pc}, function (result, status)
             {
-                if (status == google.maps.GeocoderStatus.OK)
+
+
+                    if (status == google.maps.GeocoderStatus.OK)
                     {
                         marker = new google.maps.Marker
                         ({
@@ -111,13 +121,15 @@ function plotMarkers(map)
                         map: map
                         });
 
-                    var info = "<h1>" + location.LocationName + "</h1>" +
-                        "<p>" + location.address + "</p>";
+                        var info = "<h1>" + ln + "</h1>";
 
-                    var infowindow = new google.maps.InfoWindow({content: info});
+                        var infowindow = new google.maps.InfoWindow({content: info});
 
-                    marker.addListener('click', function () {infowindow.open(map, marker); });
-                }
+                        marker.addListener('click', function () {
+                        infowindow.open(map, marker);
+                        });
+                    }
+
             });
         }
     }
