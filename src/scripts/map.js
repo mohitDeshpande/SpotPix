@@ -85,54 +85,48 @@ function plotMarkers(map)
 {
 
     var geocoder = new google.maps.Geocoder();
-    var marker;
 
     var request = new XMLHttpRequest();
-    request.open("GET", "/data/locations.xml", false);
+    request.open("GET", "/data/locations.json", false);
     request.send();
-    var xml = request.responseXML;
-    var locations = xml.getElementsByTagName("Location");
+    var json = JSON.parse(request.responseText);
+    console.log(json);
+    var locations = json.Locations.Location;
+    console.log(locations);
 
-    for(var i = 0; i < locations.length; i++)
+    locations.forEach(function(location)
     {
-        var location = locations[i];
-        var postal_codes = location.getElementsByTagName("PostalCode");
 
-        //change
-        var location_names=location.getElementsByTagName("LocationName");
-
-        for(var j = 0; j < postal_codes.length; j++)
-        {
-            var pc=postal_codes[j].childNodes[0].nodeValue;
+        var postal_code   = location.PostalCode;
+        var location_name = location.LocationName;
 
 
-            var ln=location_names[j].childNodes[0].nodeValue;
-            console.log(ln);
+        console.log(location_name);
 
-            geocoder.geocode({'address': pc}, function (result, status)
+            geocoder.geocode({'address': postal_code}, function (result, status)
             {
 
 
                     if (status == google.maps.GeocoderStatus.OK)
                     {
-                        marker = new google.maps.Marker
+                        var marker = new google.maps.Marker
                         ({
-                        position: result[0].geometry.location,
-                        map: map
+                            position: result[0].geometry.location,
+                            map: map
                         });
 
-                        var info = "<h1>" + ln + "</h1>";
+                        var info = "<h1>" + location_name + "</h1>";
 
                         var infowindow = new google.maps.InfoWindow({content: info});
 
                         marker.addListener('click', function () {
-                        infowindow.open(map, marker);
+                            infowindow.open(map, marker);
                         });
                     }
 
             });
-        }
-    }
+
+    });
 
 }
 
