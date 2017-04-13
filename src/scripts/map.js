@@ -1,11 +1,8 @@
 /**
- * Created by mohit on 2017-02-28.
- */
-/**
  * all methods and code related to the Google Maps JavaScript API goes here
  */
 
-
+var googleAPI= 'AIzaSyCgMElgfY8buDapA2d3VO-7fWgMJCPqhqk';
 map = null;
 var toronto = {lat: 43.6426, lng: -79.3871};
 
@@ -17,6 +14,7 @@ function initMap() {
         mapTypeId: 'roadmap'
     });
 
+    plotMarkers(map);
     createMapSearch(map);
 
 }
@@ -83,7 +81,54 @@ function createMapSearch(map) {
     });
 }
 
+function plotMarkers(map)
+{
 
+    var geocoder = new google.maps.Geocoder();
+
+    var request = new XMLHttpRequest();
+    request.open("GET", "/data/locations.json", false);
+    request.send();
+    var json = JSON.parse(request.responseText);
+    console.log(json);
+    var locations = json.Locations.Location;
+    console.log(locations);
+
+    locations.forEach(function(location)
+    {
+
+        var postal_code   = location.PostalCode;
+        var location_name = location.LocationName;
+
+
+        console.log(location_name);
+
+            geocoder.geocode({'address': postal_code}, function (result, status)
+            {
+
+
+                    if (status == google.maps.GeocoderStatus.OK)
+                    {
+                        var marker = new google.maps.Marker
+                        ({
+                            position: result[0].geometry.location,
+                            map: map
+                        });
+
+                        var info = "<h1>" + location_name + "</h1>";
+
+                        var infowindow = new google.maps.InfoWindow({content: info});
+
+                        marker.addListener('click', function () {
+                            infowindow.open(map, marker);
+                        });
+                    }
+
+            });
+
+    });
+
+}
 
 
 
