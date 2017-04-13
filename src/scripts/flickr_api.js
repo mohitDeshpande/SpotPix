@@ -2,28 +2,73 @@
  * Created by DELL on 4/2/2017.
  */
 
+
+
+function showImages(lat,lon) {
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.flickr.com/services/rest",
+        "method": "GET",
+        data: {
+            method:"flickr.photos.search",
+            api_key: "5694a32a5ee5ad831040d61ae92921ef",
+            lat: lat,
+            lon: lon,
+            format: "json",
+            nojsoncallback : 1
+        },
+        dataType : "json",
+        error : flickrApiCallFail,
+        success : function (data) {
+
+
+        }
+    };
+
+    $.ajax(settings);
+};
+
+
+function flickrApiCallFail(jqXHR,textStatus,errorThrown) {
+    console.error("Flickr call failed.\nError:"+errorThrown+"\nStatus:"+textStatus);
+}
+
+
+
+
+
+
+/*
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=223e8cae5910e38f767393f23f8308c8&gallery_id=66911286-72157647277042064&format=json&nojsoncallback=1",
+    "url": "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=5694a32a5ee5ad831040d61ae92921ef&lat=43.6426&lon=-79.3871&format=json&nojsoncallback=1",
     "method": "GET",
-    "headers": {}
+    data : {
+        api_key : "5694a32a5ee5ad831040d61ae92921ef",
+        lat : 43.6426 ,
+        lon : -79.3871,
+        format : "json"
+    },
+
 };
 
 $.ajax(settings).done(function (data) {
-    console.log(data);
+    //console.log(data);
 
 
 
-    $("#allImages").append(data.photos.photo[0].title + " Gallery");
-    $.each( data.photos.photo, function( i, gp ) {
+   // $("#allImages").append(data.photos.photo[0] + " Gallery");
+    $.each( data.photos.photo[0], function( i, gp ) {
 
         var farmId = gp.farm;
         var serverId = gp.server;
         var id = gp.id;
         var secret = gp.secret;
 
-        console.log(farmId + ", " + serverId + ", " + id + ", " + secret);
+//       console.log(farmId + ", " + serverId + ", " + id + ", " + secret);
 
         $("#singleImage").append('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
 
@@ -31,38 +76,4 @@ $.ajax(settings).done(function (data) {
 })
 
 
-
-
-/*
-$(document).ready(function () {
-
-    console.log("hello woerld");
-    var flickrAPI ='https://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=223e8cae5910e38f767393f23f8308c8&gallery_id=66911286-72157647277042064&format=json&nojsoncallback=1';
-    var pics= $("#allImages").val();
-    var Photoids= new Array();
-
-
-    $.getJSON(flickrAPI,{
-            photos: {
-                page: 1,
-                pages: 0,
-                perpage: 100,
-                total: 0,
-                photo: [ ]
-            },
-            stat: "ok"
-        },
-
-    function(data) {
-        $.each( data.photos, function( i, item ){
-            var Photo="";
-            Photo=item.photo.id;
-            Photoids.push(Photo);
-            var url = 'https://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.o-secret + '.jpg';
-            $('#singleImage').append("<img src=" + url + "/>");
-            console.log(url);
-        });
-
-    });
-});
- */
+*/
