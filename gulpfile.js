@@ -15,6 +15,7 @@ var gulp  = require('gulp'),
 
 // grab our sources and destinations
 var jsSources = ['src/scripts/*.js'],
+    jsVendorSources = ['src/scripts/vendor/*.js'],
     sassSources = ['src/styles/header.scss','src/styles/footer.scss','src/styles/body.scss'],
     htmlSources = ['src/*.html'],
     imageSources = ['src/images/*'],
@@ -53,7 +54,13 @@ gulp.task('js', function() {
             console.log(e);
         }))
         .pipe(gulp.dest(outputDir))
-        .pipe(connect.reload())
+        .pipe(connect.reload());
+    gulp.src(jsVendorSources)
+        .pipe(uglify().on('error', function (e) {
+            console.error(e);
+        }))
+        .pipe(gulp.dest(outputDir+"/vendor/"))
+        .pipe(connect.reload());
 });
 
 // task to minify and optimize all the images in the project
