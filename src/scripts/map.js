@@ -90,44 +90,48 @@ function plotMarkers(map)
     request.open("GET", "/data/locations.json", false);
     request.send();
     var json = JSON.parse(request.responseText);
-    console.log(json);
     var locations = json.Locations.Location;
-    console.log(locations);
-
+    console.log(locations.length);
+    count = 0;
     locations.forEach(function(location)
     {
-
-        var postal_code   = location.PostalCode;
+        count++;
         var location_name = location.LocationName;
+        var address = location.Address;
+        var x;
+        var postal_code   = location.PostalCode;
+
+        var compAdd=address+", ON "+ postal_code;
 
 
-        console.log(location_name);
+        geocoder.geocode({'address': compAdd}, function (result, status)
+        {
 
-            geocoder.geocode({'address': postal_code}, function (result, status)
+            if (status == google.maps.GeocoderStatus.OK)
             {
+                var marker = new google.maps.Marker
+                ({
+                    //console.log(singleAdd);
+                    position: result[0].geometry.location,
+                    map: map
+                });
 
+                console.log(result[0].geometry.location.lat() + "---" + result[0].geometry.location.lng());
+                //console.log(result[0]);
+                var info = "<h1>" + location_name + "</h1>" + "<p>" + address + "<br />" + postal_code + "</p>";
 
-                    if (status == google.maps.GeocoderStatus.OK)
-                    {
-                        var marker = new google.maps.Marker
-                        ({
-                            position: result[0].geometry.location,
-                            map: map
-                        });
+                var infowindow = new google.maps.InfoWindow({content: info});
 
-                        var info = "<h1>" + location_name + "</h1>";
+                marker.addListener('click', function ()
+                {
+                    infowindow.open(map, marker);
+                });
+            }
 
-                        var infowindow = new google.maps.InfoWindow({content: info});
-
-                        marker.addListener('click', function () {
-                            infowindow.open(map, marker);
-                        });
-                    }
-
-            });
+        });
 
     });
-
+    console.log("counter : " + count);
 }
 
 
