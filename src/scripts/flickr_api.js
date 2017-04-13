@@ -13,7 +13,7 @@ function showImages(lat,lon) {
         "method": "GET",
         data: {
             method:"flickr.photos.search",
-            api_key: "5694a32a5ee5ad831040d61ae92921ef",
+            api_key: "dac6357d0d6e3999018a556618331d5d",
             lat: lat,
             lon: lon,
             format: "json",
@@ -22,7 +22,18 @@ function showImages(lat,lon) {
         dataType : "json",
         error : flickrApiCallFail,
         success : function (data) {
+           // console.log(JSON.stringify(data));
+            $.each( data.photos.photo, function( i, gp ) {
 
+
+                var farmId = gp.farm;
+                console.log(JSON.stringify(gp));
+                var serverId = gp.server;
+                var id = gp.id;
+                var secret = gp.secret;
+                $("#gallery").append('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+
+            });
 
         }
     };
