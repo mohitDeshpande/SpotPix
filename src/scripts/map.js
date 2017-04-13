@@ -16,6 +16,7 @@ function initMap() {
 
     plotMarkers(map);
     createMapSearch(map);
+    findInstagramMediaAtLocation(43.6426,-79.3871);
 
 }
 
@@ -90,9 +91,9 @@ function plotMarkers(map)
     request.open("GET", "/data/locations.json", false);
     request.send();
     var json = JSON.parse(request.responseText);
-    console.log(json);
+    //console.log(json);
     var locations = json.Locations.Location;
-    console.log(locations);
+    //console.log(locations);
 
     locations.forEach(function(location)
     {
@@ -101,7 +102,7 @@ function plotMarkers(map)
         var location_name = location.LocationName;
 
 
-        console.log(location_name);
+        //console.log(location_name);
 
             geocoder.geocode({'address': postal_code}, function (result, status)
             {
