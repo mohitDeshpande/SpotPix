@@ -28,7 +28,7 @@ function getImagesFrom500px(lat, lng) {
                 var imageThumbnailUrl = photo.image_url[0];
                 var imageFullUrl = photo.image_url[1];
                 var id = photo.id;
-                $('#gallery').append("<div class='col-3 text-center  gallery-img'><a data-toggle='modal' data-target='#carousel-modal' onclick='setActiveImage("+ id +")'><img class='img-fluid' src='" + imageThumbnailUrl + "'></a></div>");
+                $('#gallery').append("<div class='col-3 text-center  gallery-img'><a data-toggle='modal' data-target='#carousel-modal' onclick='setActiveImage("+ id +")'><img class='img-fluid img-thumbnail' src='" + imageThumbnailUrl + "'></a></div>");
                 //$('#gallery').append("<div class='col-3 text-center  gallery-img'><a href='"+ imageFullUrl +"' data-toggle='lightbox' data-gallery='500px' data-title='A random title' data-footer='A custom footer text'><img src='"+ imageThumbnailUrl +"' class='img-fluid'></a></div>");
                 $("<div class='carousel-item' id='"+ id +"'><img class='d-block img-fluid' src='" + imageFullUrl + "'></div>").appendTo('.carousel-inner');
             }
