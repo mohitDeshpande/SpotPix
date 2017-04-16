@@ -16,6 +16,7 @@ function showImages(lat,lon) {
             api_key: "30e2a4d93e16fe26f8a046b824724e0e",
             lat: lat,
             lon: lon,
+            radius: 3,
             format: "json",
             nojsoncallback : 1
         },
