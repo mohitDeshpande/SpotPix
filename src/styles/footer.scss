@@ -4,6 +4,8 @@
 footer {
   border-top: 1px solid $very-light-grey;
   padding-top: 1em;
+  margin-top: 20px;
+  position: absolute;
   .container {
     font-size:0.8em;
     border-top: 5px solid black;
@@ -27,3 +29,4 @@ ul {
     text-decoration: underline;
   }
 }
+

@@ -14,17 +14,39 @@ $(function () {
 
 })
 
+
 function getImagesFrom500px(lat, lng) {
 
     var location = lat+","+lng+","+"3km";
-    _500px.api('/photos/search', { geo: location, page: 1, sort:"highest_rating", image_size:2}, function (response) {
+    _500px.api('/photos/search', { geo: location, page: 1, sort:"highest_rating", image_size:[2,4]}, function (response) {
         $('#gallery').html("");
+        $('.carousel-inner').html("");
 
-        console.log(response.data.photos.length);
+        console.log(response.data.photos);
         $.each(response.data.photos,function(index,photo) {
-            var imageThumbnailUrl = photo.images[0].url;
-            $('#gallery').append("<div class='col-3 text-center><a class='thumbnail' href='#'><img class='img-responsive img-thumbnail' src='"+imageThumbnailUrl+"'></a></div>"
-            )
-        })
+            if(!photo.nsfw) {
+                var imageThumbnailUrl = photo.image_url[0];
+                var imageFullUrl = photo.image_url[1];
+                var id = photo.id;
+                $('#gallery').append("<div class='col-3 text-center  gallery-img'><a data-toggle='modal' data-target='#carousel-modal' onclick='setActiveImage("+ id +")'><img class='img-fluid' src='" + imageThumbnailUrl + "'></a></div>");
+                //$('#gallery').append("<div class='col-3 text-center  gallery-img'><a href='"+ imageFullUrl +"' data-toggle='lightbox' data-gallery='500px' data-title='A random title' data-footer='A custom footer text'><img src='"+ imageThumbnailUrl +"' class='img-fluid'></a></div>");
+                $("<div class='carousel-item' id='"+ id +"'><img class='d-block img-fluid' src='" + imageFullUrl + "'></div>").appendTo('.carousel-inner');
+            }
+        });
+        $('.carouselExampleControls').carousel('pause');
     });
+    /*
+     "<div class='carousel-item active'><img class='d-block img-fluid' src='images/placeholder.svg'></div>"
+     */
 }
+
+// set the clicked image to active in the carousel
+function setActiveImage(id) {
+    $("#"+ id).addClass("active");
+}
+
+// clear all active class from carousel on modal hide
+$('#carousel-modal').on('hide.bs.modal', function(e){
+    $('.carousel-inner>div.active').removeClass("active");
+    console.log("fired hide event");
+});

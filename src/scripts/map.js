@@ -63,12 +63,16 @@ function createMapSearch(map) {
             };
 
             // Create a marker for each place.
-            markers.push(new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 map: map,
-                icon: icon,
+                //icon: icon,
                 title: place.name,
                 position: place.geometry.location
-            }));
+            })
+            marker.addListener('click', function () {
+                getImagesFrom500px(place.geometry.location.lat(),place.geometry.location.lng());
+            })
+            markers.push(marker);
 
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
