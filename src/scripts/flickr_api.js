@@ -2,21 +2,90 @@
  * Created by DELL on 4/2/2017.
  */
 
-$(document).ready(function () {
 
-    var flickrAPI ='https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=68f9a3498ff770330ef51429836ba68a&user_id=66956608%40N06&format=rest&auth_token=72157678860534383-321835e8bafb0244&api_sig=8f0ca3e941f6fd4f64759402fa3447df';
-    var pics= $("#allImages").val();
 
-    $.getJSON(flickrAPI,{
-        tags: pics,
-        per_page: 50,
-        format: "json"
+function showImages(lat,lon) {
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.flickr.com/services/rest",
+        "method": "GET",
+        data: {
+            method:"flickr.photos.search",
+            api_key: "30e2a4d93e16fe26f8a046b824724e0e",
+            lat: lat,
+            lon: lon,
+            radius: 3,
+            format: "json",
+            nojsoncallback : 1
+        },
+        dataType : "json",
+        error : flickrApiCallFail,
+        success : function (data) {
+           // console.log(JSON.stringify(data));
+            $.each( data.photos.photo, function( i, gp ) {
+
+
+                var farmId = gp.farm;
+                console.log(JSON.stringify(gp));
+                var serverId = gp.server;
+                var id = gp.id;
+                var secret = gp.secret;
+                $("#gallery").append('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+
+            });
+
+        }
+    };
+
+    $.ajax(settings);
+};
+
+
+function flickrApiCallFail(jqXHR,textStatus,errorThrown) {
+    console.error("Flickr call failed.\nError:"+errorThrown+"\nStatus:"+textStatus);
+}
+
+
+
+
+
+
+/*
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=5694a32a5ee5ad831040d61ae92921ef&lat=43.6426&lon=-79.3871&format=json&nojsoncallback=1",
+    "method": "GET",
+    data : {
+        api_key : "5694a32a5ee5ad831040d61ae92921ef",
+        lat : 43.6426 ,
+        lon : -79.3871,
+        format : "json"
     },
 
-    function(data) {
-        $.each( data.photos.photo, function( i, item ){
-            var url = 'https://farm' + item.farm + '.staticflickr.com/' + item.server + '/' + item.id + '_' + item.secret + '.jpg';
-            $('#singleImage').append('<img src="' + url + '"/>');
-        });
+};
+
+$.ajax(settings).done(function (data) {
+    //console.log(data);
+
+
+
+   // $("#allImages").append(data.photos.photo[0] + " Gallery");
+    $.each( data.photos.photo[0], function( i, gp ) {
+
+        var farmId = gp.farm;
+        var serverId = gp.server;
+        var id = gp.id;
+        var secret = gp.secret;
+
+//       console.log(farmId + ", " + serverId + ", " + id + ", " + secret);
+
+        $("#singleImage").append('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+
     });
-});
+})
+
+
+*/
