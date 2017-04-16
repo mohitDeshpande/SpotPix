@@ -18,6 +18,7 @@ function initMap() {
     });
 
     createMapSearch(map);
+    showImages(43.6426,-79.3871);
 
 }
 
@@ -82,6 +83,8 @@ function createMapSearch(map) {
         map.fitBounds(bounds);
     });
 }
+
+
 
 
 
