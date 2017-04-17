@@ -24,15 +24,16 @@ function showImages(lat,lon) {
         error : flickrApiCallFail,
         success : function (data) {
            // console.log(JSON.stringify(data));
+            var thumbnailSize ="q";
+            var photoSize = "b"
             $.each( data.photos.photo, function( i, gp ) {
-
-
                 var farmId = gp.farm;
                 console.log(JSON.stringify(gp));
                 var serverId = gp.server;
                 var id = gp.id;
                 var secret = gp.secret;
-                $("#gallery").append('<img src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+                // TODO aditya to change URL according to 500px js file
+                //$("div#flickr div.gallery").append('<div class="col-3 text-center gallery-img"><a data-toggle="modal" data-target="#carousel-modal" onclick="setActiveImage('+ id +')" ><img class="img-fluid img-thumbnail" src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '_' + thumbnailSize +'.jpg"/></a></div>');
 
             });
 

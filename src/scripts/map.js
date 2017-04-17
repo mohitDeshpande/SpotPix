@@ -16,7 +16,7 @@ function initMap() {
 
     plotMarkers(map);
     createMapSearch(map);
-    showImages(43.6426,-79.3871);
+    //showImages(43.6426,-79.3871);
 
 }
 

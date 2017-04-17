@@ -7,7 +7,6 @@
 
     <!--Stylesheets-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -64,39 +63,28 @@
             <div class="row" id="gallery-header">
                 <ul class="nav nav-pills nav-fill col-12">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">500px</a>
+                        <a class="nav-link" data-toggle="pill" href="#flickr" role="tab">Flickr</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Flickr</a>
+                        <a class="nav-link active" data-toggle="pill" href="#px500" role="tab">500px</a>
                     </li>
                 </ul>
             </div>
-            <div id="gallery" class="row">
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
-                <div class='col-3 text-center gallery-img'><a href="#"><img class='img-responsive img-thumbnail' src='images/placeholder.svg'></a></div>
+
+            <div class="tab-content">
+                <div class="tab-pane" id="flickr" role="tabpanel">
+                    <div class="gallery row">
+                    </div>
+                </div>
+                <div class="tab-pane active" id="px500" role="tabpanel">
+                    <div class="gallery row">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 </main>
 
-
-<!--Flickr API destination-->
-<div id="allImages">
-    <div id="singleImage">
-
-    </div>
-
-</div>
 
 <!--&lt;!&ndash;FOOTER&ndash;&gt;-->
 <!--&lt;!&ndash;SpotPix Modal Class&ndash;&gt;-->
@@ -169,7 +157,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="vendor/500px.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.min.js"></script>
 <script src="script.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgMElgfY8buDapA2d3VO-7fWgMJCPqhqk&callback=initMap&libraries=places" async defer></script>
 
