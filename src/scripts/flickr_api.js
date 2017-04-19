@@ -23,26 +23,43 @@ function showImages(lat,lon) {
         dataType : "json",
         error : flickrApiCallFail,
         success : function (data) {
-           // console.log(JSON.stringify(data));
+           //console.log(JSON.stringify(data.photos));
             var thumbnailSize ="q";
-            var photoSize = "b"
+            var photoSize = "c";
+            $('div#flickr div.gallery').html("");
+            $('.carousel-inner').html("");
+
+
+
             $.each( data.photos.photo, function( i, gp ) {
                 var farmId = gp.farm;
-                console.log(JSON.stringify(gp));
+                //console.log(JSON.stringify(gp));
                 var serverId = gp.server;
                 var id = gp.id;
                 var secret = gp.secret;
+                var url = "https://farm"+farmId+ ".staticflickr.com/" + serverId + "/" + id + "_" + secret + "_" + photoSize +".jpg";
+
+
+                console.log(url);
                 // TODO aditya to change URL according to 500px js file
-                //$("div#flickr div.gallery").append('<div class="col-3 text-center gallery-img"><a data-toggle="modal" data-target="#carousel-modal" onclick="setActiveImage('+ id +')" ><img class="img-fluid img-thumbnail" src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '_' + thumbnailSize +'.jpg"/></a></div>');
+                $("div#flickr div.gallery").append('<div class="col-3 text-center gallery-img"><a data-toggle="modal" data-target="#carousel-modal" onclick="setActiveImage('+ id +')" ><img class="img-fluid img-thumbnail" src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '_' + thumbnailSize +'.jpg"/></a></div>');
+                $("<div class='carousel-item' id='"+ id +"'><img class='d-block img-fluid' src='" + url + "'></div>").appendTo('.carousel-inner');
 
             });
-
+            $('.carouselExampleControls').carousel('pause');
         }
     };
 
     $.ajax(settings);
 };
 
+function setActiveImage(id) {
+    $("#"+ id).addClass("active");
+}
+$('#carousel-modal').on('hide.bs.modal', function(e){
+    $('.carousel-inner>div.active').removeClass("active");
+    console.log("fired hide event");
+});
 
 function flickrApiCallFail(jqXHR,textStatus,errorThrown) {
     console.error("Flickr call failed.\nError:"+errorThrown+"\nStatus:"+textStatus);

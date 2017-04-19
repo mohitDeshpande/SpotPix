@@ -72,6 +72,7 @@ function createMapSearch(map) {
             })
             marker.addListener('click', function () {
                 getImagesFrom500px(place.geometry.location.lat(),place.geometry.location.lng());
+                showImages(place.geometry.location.lat(),place.geometry.location.lng());
             })
             markers.push(marker);
 
@@ -127,6 +128,7 @@ function plotMarkers(map)
                         marker.addListener('click', function () {
                             infowindow.open(map, marker);
                             getImagesFrom500px(result[0].geometry.location.lat(),result[0].geometry.location.lng());
+                            showImages(result[0].geometry.location.lat(),result[0].geometry.location.lng());
                         });
                     }
 
