@@ -30,8 +30,12 @@ function showImages(lat,lon) {
             $('#flickr-carousel-inner').html("");
 
 
-
-            $.each( data.photos.photo, function( i, gp ) {
+            var count = 0;
+            $.each(data.photos.photo, function( i, gp ) {
+                // show only 20 flickr photos
+                if(count++ >= 20){
+                    return;
+                }
                 var farmId = gp.farm;
                 //console.log(JSON.stringify(gp));
                 var serverId = gp.server;
