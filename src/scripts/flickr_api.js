@@ -27,7 +27,7 @@ function showImages(lat,lon) {
             var thumbnailSize ="q";
             var photoSize = "c";
             $('div#flickr div.gallery').html("");
-            $('.carousel-inner').html("");
+            $('#flickr-carousel-inner').html("");
 
 
 
@@ -40,10 +40,9 @@ function showImages(lat,lon) {
                 var url = "https://farm"+farmId+ ".staticflickr.com/" + serverId + "/" + id + "_" + secret + "_" + photoSize +".jpg";
 
 
-                console.log(url);
-                // TODO aditya to change URL according to 500px js file
-                $("div#flickr div.gallery").append('<div class="col-3 text-center gallery-img"><a data-toggle="modal" data-target="#carousel-modal" onclick="setActiveImage('+ id +')" ><img class="img-fluid img-thumbnail" src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '_' + thumbnailSize +'.jpg"/></a></div>');
-                $("<div class='carousel-item' id='"+ id +"'><img class='d-block img-fluid' src='" + url + "'></div>").appendTo('.carousel-inner');
+                //console.log(url);
+                $("div#flickr div.gallery").append('<div class="col-3 text-center gallery-img"><a data-toggle="modal" data-target="#flickr-carousel-modal" onclick="setActiveImage('+ id +')" ><img class="img-fluid img-thumbnail" src="https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '_' + thumbnailSize +'.jpg"/></a></div>');
+                $("<div class='carousel-item' id='"+ id +"'><img class='d-block img-fluid' src='" + url + "'></div>").appendTo('#flickr-carousel-inner');
 
             });
             $('.carouselExampleControls').carousel('pause');
@@ -56,8 +55,8 @@ function showImages(lat,lon) {
 function setActiveImage(id) {
     $("#"+ id).addClass("active");
 }
-$('#carousel-modal').on('hide.bs.modal', function(e){
-    $('.carousel-inner>div.active').removeClass("active");
+$('#flickr-carousel-modal').on('hide.bs.modal', function(e){
+    $('#flickr-carousel-inner>div.active').removeClass("active");
     console.log("fired hide event");
 });
 
